@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IUtskott } from 'src/models/utskott.interface';
+import { IVotering } from 'src/models/votering.interface';
 import { RiksdagenService } from './services/riksdagen.service';
 
 @Component({
@@ -8,10 +10,12 @@ import { RiksdagenService } from './services/riksdagen.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'riksdagen';
-  someData$: Observable<any>;
+  readonly title = 'riksdagen';
+  readonly votering$: Observable<IVotering>;
+  readonly utskott$: Observable<Array<IUtskott>>;
 
   constructor(private riksdagenService: RiksdagenService) {
-    this.someData$ = this.riksdagenService.getSomeData();
+    this.votering$ = this.riksdagenService.getVotering(5);
+    this.utskott$ = this.riksdagenService.getUtskott();
   }
 }

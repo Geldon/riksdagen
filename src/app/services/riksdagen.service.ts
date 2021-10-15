@@ -1,18 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Votering } from 'src/models/votering.object';
+import { IVotering } from 'src/models/votering.interface';
+import { IUtskott } from 'src/models/utskott.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RiksdagenService {
+  private readonly baseUrl =
+    'https://app-hackit-politiker-211015111946.azurewebsites.net';
+
   constructor(private httpClient: HttpClient) {}
 
-  getSomeData(): Observable<any> {
-    const url =
-      'http://data.riksdagen.se/voteringlista/?rm=2020%2F21&bet=&punkt=&parti=-&valkrets=&rost=&iid=&sz=500&utformat=json&gruppering=';
+  getVotering(size: number): Observable<IVotering> {
+    const url = `${this.baseUrl}/votering`;
+    const params: HttpParams = new HttpParams().set('size', size);
 
-    return this.httpClient.get<any>(url).pipe(map((data: any) => data));
+    return this.httpClient
+      .get<IVotering>(url, { params: params })
+      .pipe(map((data: any) => new Votering(data)));
+  }
+
+  getUtskott(): Observable<Array<IUtskott>> {
+    const url = `${this.baseUrl}/organ/utskott`;
+
+    return this.httpClient.get<Array<IUtskott>>(url);
   }
 }

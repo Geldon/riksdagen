@@ -7,4 +7,24 @@
   </div>
 </nav>
 
+<!-- 
+  Exempel på data för votering resp. utskott, detta kan raderas när vi börjar fylla appen med innehåll
+  
+  <ng-container *ngIf="votering$ | async as votering">
+  <ul *ngIf="votering?.voteringlista?.votering as voteringList">
+    <li *ngFor="let voteringItem of voteringList">
+      {{ voteringItem.namn }}, {{ voteringItem.parti }}
+    </li>
+  </ul>
+  <pre>{{ votering | json }}</pre>
+</ng-container>
+
+<ng-container *ngIf="utskott$ | async as utskottList">
+  <ul>
+    <li *ngFor="let utskottItem of utskottList">
+      {{ utskottItem.namn }}, {{ utskottItem.typ }}
+    </li>
+  </ul>
+  <pre>{{ utskottList | json }}</pre>
+</ng-container> -->
 <router-outlet></router-outlet>
