@@ -13,7 +13,8 @@ import { RiksdagenService } from './services/riksdagen.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [RiksdagenService],
   bootstrap: [AppComponent]
