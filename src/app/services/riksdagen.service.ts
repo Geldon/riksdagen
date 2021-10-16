@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Votering } from 'src/models/votering.object';
 import { IVotering } from 'src/models/votering.interface';
 import { IUtskott } from 'src/models/utskott.interface';
+import {IPerson} from "../../models/person.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,21 @@ export class RiksdagenService {
     const url = `${this.baseUrl}/organ/utskott`;
 
     return this.httpClient.get<Array<IUtskott>>(url);
+  }
+
+  getPersoner(partiKod?: string, utskottKod?: string): Observable<Array<IPerson>> {
+    const url = `${this.baseUrl}/person?partiKod=MP`;
+    const params: HttpParams = new HttpParams();
+
+    if (partiKod && partiKod != '') {
+      params.set('partiKod', partiKod);
+    }
+
+    if (utskottKod && utskottKod != '') {
+      params.set('utskottKod', utskottKod);
+    }
+
+    return this.httpClient
+      .get<Array<IPerson>>(url, { params: params });
   }
 }

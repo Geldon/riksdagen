@@ -3,13 +3,16 @@
     <a class="navbar-brand">Riksdagen</a>
     <ul class="nav navbar-nav" routerLinkActive="active">
       <li class="nav-item"><a class="nav-link" routerLink="home">Hem</a></li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="ledamoter">Ledamöter</a>
+      </li>
     </ul>
   </div>
 </nav>
 <!-- <app-personfilter (filterVisiblePersonsRequested)="someMethodThatFiltersList($event)"></app-personfilter> -->
-<!-- 
+<!--
   Exempel på data för votering resp. utskott, detta kan raderas när vi börjar fylla appen med innehåll
-  
+
   <ng-container *ngIf="votering$ | async as votering">
   <ul *ngIf="votering?.voteringlista?.votering as voteringList">
     <li *ngFor="let voteringItem of voteringList">

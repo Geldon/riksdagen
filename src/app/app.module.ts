@@ -5,11 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RiksdagenService } from './services/riksdagen.service';
+import { PersonerComponent } from './personer/personer.component';
 import { PersonfilterComponent } from './components/personfilter/personfilter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PersonfilterComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PersonerComponent,
+    PersonfilterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
