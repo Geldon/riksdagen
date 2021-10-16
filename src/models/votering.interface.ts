@@ -1,4 +1,4 @@
-export interface VoteringItem {
+export interface IVoteringItem {
   hangar_id: string;
   rm: string;
   beteckning: string;
@@ -23,7 +23,7 @@ export interface VoteringItem {
 }
 
 export interface IVoteringList {
-  votering: Array<VoteringItem>;
+  votering: Array<IVoteringItem>;
   '@grupp8': string;
   '@grupp7': string;
   '@grupp6': string;
