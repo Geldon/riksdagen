@@ -1,0 +1,86 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.parti {
+}
+
+.bottom-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vote-presence-label {
+  margin: 20px;
+}
+
+.vote-container {
+  padding: 10px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+}
+
+.vote-info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+.vote-date {
+  margin-left: 5px;
+}
+
+.line {
+  border-bottom: 1px solid gray;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.yes-circle {
+  background-color: #6ca36c;
+}
+
+.no-circle {
+  background-color: #d1112a;
+}
+
+.blank-circle {
+  background-color: #bfbfbf;
+}
+
+.absent-circle {
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
+.vote {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

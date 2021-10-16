@@ -10,6 +10,7 @@ import { UUID } from 'angular2-uuid';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Partibeteckning } from 'src/models/partibeteckning.enum';
+import {PartiService} from "../../services/parti.service";
 
 export interface PersonfilterData {
   text: string;
@@ -50,7 +51,7 @@ export class PersonfilterComponent implements OnInit, OnDestroy {
 
   private personfilterDebouncerSubscription: Subscription;
 
-  constructor() {
+  constructor(private partiService: PartiService) {
     this.personfilterFormGroup = this.getPersonfilterFormGroup();
 
     this.personfilterDebouncerSubscription = this.personfilterDebouncer
@@ -134,7 +135,7 @@ export class PersonfilterComponent implements OnInit, OnDestroy {
   ): FormGroup {
     return new FormGroup({
       partibeteckning: new FormControl(partibeteckning),
-      name: new FormControl(this.getPartiName(partibeteckning)),
+      name: new FormControl(this.partiService.getPartiName(partibeteckning)),
       imageCssClass: new FormControl(
         this.getPartiLogoImageCssClass(partibeteckning)
       ),
@@ -144,38 +145,5 @@ export class PersonfilterComponent implements OnInit, OnDestroy {
 
   private getPartiLogoImageCssClass(partibeteckning: Partibeteckning): string {
     return `personfilter__partibeteckningar__parti__logo--${partibeteckning?.toLowerCase()}`;
-  }
-
-  private getPartiName(partibeteckning: Partibeteckning): string {
-    let name: string;
-
-    switch (partibeteckning) {
-      case Partibeteckning.Centerpartiet:
-        name = 'Centerpartiet';
-        break;
-      case Partibeteckning.Kristdemokraterna:
-        name = 'Kristdemokraterna';
-        break;
-      case Partibeteckning.Liberalerna:
-        name = 'Liberalerna';
-        break;
-      case Partibeteckning.Miljopartiet:
-        name = 'Miljöpartiet';
-        break;
-      case Partibeteckning.Moderaterna:
-        name = 'Moderaterna';
-        break;
-      case Partibeteckning.Socialdemokraterna:
-        name = 'Socialdemokraterna';
-        break;
-      case Partibeteckning.Sverigedemokraterna:
-        name = 'Sverigedemokraterna';
-        break;
-      case Partibeteckning.Vansterpartiet:
-        name = 'Vänsterpartiet';
-        break;
-    }
-
-    return name;
   }
 }

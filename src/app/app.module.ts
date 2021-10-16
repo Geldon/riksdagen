@@ -8,6 +8,8 @@ import { RiksdagenService } from './services/riksdagen.service';
 import { PersonerComponent } from './personer/personer.component';
 import { PersonfilterComponent } from './components/personfilter/personfilter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PersonComponent } from './person/person.component';
+import {PartiService} from "./services/parti.service";
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     PersonerComponent,
     PersonfilterComponent,
+    PersonComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [RiksdagenService],
+  providers: [
+    RiksdagenService,
+    PartiService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

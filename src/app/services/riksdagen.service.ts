@@ -34,18 +34,25 @@ export class RiksdagenService {
   }
 
   getPersoner(partiKod?: string, utskottKod?: string): Observable<Array<IPerson>> {
-    const url = `${this.baseUrl}/person?partiKod=MP`;
+    const url = `${this.baseUrl}/person`;
     const params: HttpParams = new HttpParams();
 
-    if (partiKod && partiKod != '') {
-      params.set('partiKod', partiKod);
+    if (partiKod) {
+      params.append('partiKod', partiKod);
     }
 
-    if (utskottKod && utskottKod != '') {
-      params.set('utskottKod', utskottKod);
+    if (utskottKod) {
+      params.append('utskottKod', utskottKod);
     }
 
     return this.httpClient
       .get<Array<IPerson>>(url, { params: params });
+  }
+
+  getPerson(personId: string): Observable<IPerson> {
+    const url = `${this.baseUrl}/person/${personId}`;
+
+    return this.httpClient
+      .get<IPerson>(url);
   }
 }

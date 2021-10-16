@@ -1,0 +1,52 @@
+<div class="root-container">
+  <ng-container *ngIf="person$ | async as person">
+    <div class="header">
+      <div class="top-container">
+        <div class="person-image">
+          <img [src]=person.bildUrl alt="image">
+        </div>
+        <div class="details">
+          <h3>{{ person.tilltalsnamn }} {{ person.efternamn }}</h3>
+          Tjänstgörande riksdagsledamot
+        </div>
+      </div>
+      <div class="bottom-container">
+        <span class="parti">{{getPartiName(person.parti)}}</span>
+        <span>{{person.valkrets}}</span>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="content-container">
+      <span class="vote-presence-label">Röstnärvaro: 84 %</span>
+      <div *ngFor="let vote of votes" class="vote-container">
+        {{vote.title}}
+        <div class="vote-info">
+          <div [ngSwitch]="vote.voted">
+            <div *ngSwitchCase="'yes'" class="vote">
+              <div class="circle yes-circle"></div>
+              <div>
+                Röstade ja
+              </div>
+            </div>
+            <div *ngSwitchCase="'no'" class="vote">
+              <div class="circle no-circle">
+              </div>
+              Röstade nej
+            </div>
+            <div *ngSwitchCase="'blank'" class="vote">
+              <div class="circle blank-circle"></div>
+              Röstade blankt
+            </div>
+            <div *ngSwitchCase="'absent'" class="vote">
+              <div class="circle absent-circle"></div>
+              Frånvarande
+            </div>
+          </div>
+          <div class="vote-date">
+            - {{vote.date}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
