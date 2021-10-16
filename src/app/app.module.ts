@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "./home/home.component";
 import { RiksdagenService } from './services/riksdagen.service';
+import { PersonerComponent } from './personer/personer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PersonerComponent
   ],
   imports: [
     BrowserModule,

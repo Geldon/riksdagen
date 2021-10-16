@@ -1,0 +1,15 @@
+<div class="root-container">
+  <ng-container *ngIf="personer$ | async as personer">
+    <div>
+      <div (click)="goToPerson(person.personId)" class="person" *ngFor="let person of personer">
+        <div class="image">
+          <img [src]=person.bildUrl alt="image">
+        </div>
+        <div class="details">
+          <span>{{ person.tilltalsnamn }} {{ person.efternamn }}</span>
+          <span>{{person.parti}}</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
