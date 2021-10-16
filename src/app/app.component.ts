@@ -15,7 +15,7 @@ export class AppComponent {
   readonly utskott$: Observable<Array<IUtskott>>;
 
   constructor(private riksdagenService: RiksdagenService) {
-    this.votering$ = this.riksdagenService.getVotering(5);
+    this.votering$ = this.riksdagenService.getVotering();
     this.utskott$ = this.riksdagenService.getUtskott();
   }
 }

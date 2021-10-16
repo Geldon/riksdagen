@@ -10,12 +10,14 @@ import { IUtskott } from 'src/models/utskott.interface';
   providedIn: 'root',
 })
 export class RiksdagenService {
+  //Swagger uri: https://app-hackit-politiker-211015111946.azurewebsites.net/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+
   private readonly baseUrl =
     'https://app-hackit-politiker-211015111946.azurewebsites.net';
 
   constructor(private httpClient: HttpClient) {}
 
-  getVotering(size: number): Observable<IVotering> {
+  getVotering(size: number = 500): Observable<IVotering> {
     const url = `${this.baseUrl}/votering`;
     const params: HttpParams = new HttpParams().set('size', size);
 
