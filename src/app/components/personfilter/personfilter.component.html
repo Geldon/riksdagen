@@ -1,0 +1,55 @@
+<form
+  method="get"
+  class="personfilter"
+  *ngIf="personfilterFormGroup"
+  [formGroup]="personfilterFormGroup"
+>
+  <input
+    type="text"
+    class="personfilter__search-field"
+    [formControlName]="filterTextFormControlName"
+    (keyup)="onFilterTextChanged($event)"
+  />
+  <fieldset>
+    <legend class="visually-hidden">Partibeteckningar</legend>
+    <ul
+      class="personfilter__partibeteckningar list-unstyled"
+      formArrayName="partibeteckningar"
+    >
+      <li
+        *ngFor="
+          let partiFormGroup of partibeteckningarFormArray?.controls;
+          let i = index
+        "
+        class="personfilter__partibeteckningar__parti"
+      >
+        <div [formGroupName]="i">
+          <label
+            class="personfilter__partibeteckningar__parti__logo"
+            [ngClass]="[
+              partiFormGroup?.get(partibeteckningImageCssClassControlName)
+                ?.value,
+              partiFormGroup?.get(partibeteckningValueFormControlName)?.value
+                ? 'personfilter__partibeteckningar__parti__logo--selected'
+                : ''
+            ]"
+            [attr.for]="uuid + '_' + i"
+          >
+            <span class="visually-hidden">
+              {{
+                partiFormGroup?.get(partibeteckningNameFormControlName)?.value
+              }}
+            </span>
+          </label>
+          <input
+            class="visually-hidden"
+            type="checkbox"
+            [attr.id]="uuid + '_' + i"
+            [formControlName]="partibeteckningValueFormControlName"
+            (change)="onFilterCheckboxChanged()"
+          />
+        </div>
+      </li>
+    </ul>
+  </fieldset>
+</form>

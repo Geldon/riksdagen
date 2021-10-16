@@ -1,0 +1,94 @@
+@mixin partiLogoUrl($partibeteckning) {
+  background-image: url("/assets/images/Partisymboler/logo-#{$partibeteckning}-large.jpg");
+}
+
+.personfilter {
+  max-width: 400px;
+
+  &__search-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  &__partibeteckningar {
+    display: flex;
+    justify-content: space-between;
+
+    &__parti {
+      &__logo {
+        display: block;
+
+        &:after {
+          content: "";
+          display: block;
+          width: 40px;
+          height: 40px;
+          background-size: 32px 32px;
+          background-position-x: 3px;
+          background-position-y: 3px;
+          opacity: 0.2;
+          border: 1px solid black;
+          border-radius: 20px;
+          background-repeat: no-repeat;
+        }
+
+        &--selected {
+          &:after {
+            opacity: 1;
+          }
+        }
+
+        &--c {
+          &:after {
+            @include partiLogoUrl(c);
+          }
+        }
+
+        &--kd {
+          &:after {
+            @include partiLogoUrl(kd);
+            background-size: 26px 26px;
+            background-position-x: 6px;
+            background-position-y: 6px;
+          }
+        }
+
+        &--l {
+          &:after {
+            @include partiLogoUrl(l);
+          }
+        }
+
+        &--m {
+          &:after {
+            @include partiLogoUrl(m);
+          }
+        }
+
+        &--mp {
+          &:after {
+            @include partiLogoUrl(mp);
+          }
+        }
+
+        &--s {
+          &:after {
+            @include partiLogoUrl(s);
+          }
+        }
+
+        &--sd {
+          &:after {
+            @include partiLogoUrl(sd);
+          }
+        }
+
+        &--v {
+          &:after {
+            @include partiLogoUrl(v);
+          }
+        }
+      }
+    }
+  }
+}
