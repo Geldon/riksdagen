@@ -7,6 +7,12 @@
     <div (click)="goToPerson(person.personId)" class="person" *ngFor="let person of filteredPersons">
       <div class="person-image">
         <img [src]=person.bildUrl alt="image">
+        <div class="personfilter__partibeteckningar">
+          <div class="personfilter__partibeteckningar__parti">
+            <div [ngClass]="[getPartiLogoImageCssClass(person.parti)]">
+            </div>
+          </div>
+        </div>
       </div>
       <div class="details">
         <span>{{ person.tilltalsnamn }} {{ person.efternamn }}</span>

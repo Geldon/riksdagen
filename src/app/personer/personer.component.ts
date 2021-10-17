@@ -61,4 +61,8 @@ export class PersonerComponent implements OnInit {
   getPartiName(partiBeteckning: Partibeteckning) {
     return this.partiService.getPartiName(partiBeteckning)
   }
+
+  getPartiLogoImageCssClass(partibeteckning: Partibeteckning): string {
+    return `personfilter__partibeteckningar__parti__logo--${partibeteckning?.toLowerCase()}`;
+  }
 }
