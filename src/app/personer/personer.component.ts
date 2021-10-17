@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
 import {IPerson} from "../../models/person.interface";
 import {RiksdagenService} from "../services/riksdagen.service";
 import {Router} from "@angular/router";
@@ -43,9 +42,15 @@ export class PersonerComponent implements OnInit {
     const trimmed = event.text?.trim().toLowerCase();
 
     this.filteredPersons = this.persons.filter(person => {
-      return this.checkIfContains(person.tilltalsnamn, trimmed) ||
+      const textMatch = !trimmed || trimmed.length === 0 ? true : this.checkIfContains(person.tilltalsnamn, trimmed) ||
         this.checkIfContains(person.efternamn, trimmed) ||
         this.checkIfContains(person.tilltalsnamn + ' ' + person.efternamn, trimmed)
+
+      const partiMatch = event.partibeteckningar.some(partibeteckning => {
+        return partibeteckning.toString() === person.parti.toString();
+      });
+
+      return textMatch && partiMatch;
     })
   }
 
