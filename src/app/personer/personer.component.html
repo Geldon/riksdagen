@@ -1,7 +1,7 @@
 <div class="root-container">
   <app-personfilter (filterVisiblePersonsRequested)="filterList($event)"></app-personfilter>
 
-  <div *ngIf="loading" class="spinner-border" role="status">
+  <div *ngIf="loading" class="spinner-border loading-spinner" role="status">
   </div>
 
     <div (click)="goToPerson(person.personId)" class="person" *ngFor="let person of filteredPersons">
