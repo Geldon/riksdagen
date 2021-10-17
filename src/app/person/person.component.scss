@@ -33,6 +33,7 @@
   padding: 10px;
   border: 1px solid lightgray;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .vote-info {
@@ -47,6 +48,7 @@
 
 .line {
   border-bottom: 1px solid gray;
+  margin-bottom: 20px;
 }
 
 .content-container {
@@ -63,15 +65,15 @@
 }
 
 .yes-circle {
-  background-color: #6ca36c;
+  background-color: #3FA820;
 }
 
 .no-circle {
-  background-color: #d1112a;
+  background-color: #D52B2B;
 }
 
 .blank-circle {
-  background-color: #bfbfbf;
+  background-color: #CCCCCC;
 }
 
 .absent-circle {

@@ -10,6 +10,7 @@ import { PersonfilterComponent } from './components/personfilter/personfilter.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { PersonComponent } from './person/person.component';
 import {PartiService} from "./services/parti.service";
+import { VoteComponent } from './vote/vote.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {PartiService} from "./services/parti.service";
     HomeComponent,
     PersonerComponent,
     PersonfilterComponent,
-    PersonComponent
+    PersonComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,

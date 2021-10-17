@@ -6,15 +6,27 @@ import { Votering } from 'src/models/votering.object';
 import { IVotering } from 'src/models/votering.interface';
 import { IUtskott } from 'src/models/utskott.interface';
 import {IPerson} from "../../models/person.interface";
+import {IPartiVote} from "../../models/vote.interface";
+import {IPersonMedVotering} from "../../models/voteringFraga.interface";
 
 @Injectable({
   providedIn: 'root',
 })
 export class RiksdagenService {
+  private _votering: IPersonMedVotering | undefined;
+
+  getVoteringItem(): IPersonMedVotering | undefined {
+    return this._votering;
+  }
+
+  setVoteringItem(value: IPersonMedVotering | undefined) {
+    this._votering = value;
+  }
   //Swagger uri: https://app-hackit-politiker-211015111946.azurewebsites.net/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
 
   private readonly baseUrl =
     'https://app-hackit-politiker-211015111946.azurewebsites.net';
+
 
   constructor(private httpClient: HttpClient) {}
 
@@ -5476,9 +5488,9 @@ export class RiksdagenService {
         ]
       }] as Array<IPerson>
 
-    return of(personer);
+    //return of(personer);
 
-    /*const url = `${this.baseUrl}/person`;
+    const url = `${this.baseUrl}/person?partiKod=KD`;
     const params: HttpParams = new HttpParams();
 
     if (partiKod) {
@@ -5490,7 +5502,7 @@ export class RiksdagenService {
     }
 
     return this.httpClient
-      .get<Array<IPerson>>(url, { params: params });*/
+      .get<Array<IPerson>>(url, { params: params });
   }
 
   getPerson(personId: string): Observable<IPerson> {
@@ -5498,5 +5510,54 @@ export class RiksdagenService {
 
     return this.httpClient
       .get<IPerson>(url);
+  }
+
+  getVoteringar(personId: string): Observable<Array<IPersonMedVotering>> {
+    const url = `${this.baseUrl}/votering?size=10&personId=` + personId;
+
+    return this.httpClient
+      .get<Array<IPersonMedVotering>>(url);
+  }
+
+  getPartiVotes(voteId: string): Observable<Array<IPartiVote>> {
+    const partiVotes = [
+      {
+        parti: 'S',
+        antalJa: 82,
+        antalNej: 1,
+        antalAvsta: 5,
+        antalFranvarande: 12
+      },
+      {
+        parti: 'M',
+        antalJa: 2,
+        antalNej: 61,
+        antalAvsta: 3,
+        antalFranvarande: 7
+      },
+      {
+        parti: 'SD',
+        antalJa: 2,
+        antalNej: 61,
+        antalAvsta: 3,
+        antalFranvarande: 7
+      },
+      {
+        parti: 'C',
+        antalJa: 2,
+        antalNej: 61,
+        antalAvsta: 3,
+        antalFranvarande: 7
+      },
+      {
+        parti: 'V',
+        antalJa: 82,
+        antalNej: 1,
+        antalAvsta: 5,
+        antalFranvarande: 12
+      }
+    ] as Array<IPartiVote>
+
+    return of(partiVotes)
   }
 }

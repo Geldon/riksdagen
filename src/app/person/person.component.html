@@ -1,5 +1,5 @@
 <div class="root-container">
-  <ng-container *ngIf="person$ | async as person">
+  <ng-container *ngIf="person">
     <div class="header">
       <div class="top-container">
         <div class="person-image">
@@ -16,34 +16,36 @@
       </div>
     </div>
     <div class="line"></div>
+    <div *ngIf="loading" class="spinner-border loading-spinner" role="status">
+    </div>
     <div class="content-container">
-      <span class="vote-presence-label">Röstnärvaro: 84 %</span>
-      <div *ngFor="let vote of votes" class="vote-container">
-        {{vote.title}}
+      <!--<span class="vote-presence-label">Röstnärvaro: 84 %</span>-->
+      <div *ngFor="let vote of voteringar" class="vote-container" (click)="goToVote(vote)">
+        {{vote.voteringFraga.titel}}
         <div class="vote-info">
-          <div [ngSwitch]="vote.voted">
-            <div *ngSwitchCase="'yes'" class="vote">
+          <div [ngSwitch]="vote.voteringSvar.rost">
+            <div *ngSwitchCase="'Ja'" class="vote">
               <div class="circle yes-circle"></div>
               <div>
                 Röstade ja
               </div>
             </div>
-            <div *ngSwitchCase="'no'" class="vote">
+            <div *ngSwitchCase="'Nej'" class="vote">
               <div class="circle no-circle">
               </div>
               Röstade nej
             </div>
-            <div *ngSwitchCase="'blank'" class="vote">
+            <div *ngSwitchCase="'Avstår'" class="vote">
               <div class="circle blank-circle"></div>
               Röstade blankt
             </div>
-            <div *ngSwitchCase="'absent'" class="vote">
+            <div *ngSwitchCase="'Frånvarande'" class="vote">
               <div class="circle absent-circle"></div>
               Frånvarande
             </div>
           </div>
           <div class="vote-date">
-            - {{vote.date}}
+            - {{vote.voteringFraga.datum}}
           </div>
         </div>
       </div>

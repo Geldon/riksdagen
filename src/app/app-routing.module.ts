@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {PersonerComponent} from "./personer/personer.component";
 import {PersonComponent} from "./person/person.component";
+import {VoteComponent} from "./vote/vote.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'ledamot/:personId',
     component: PersonComponent
+  },
+  {
+    path: 'votering',
+    component: VoteComponent
   }];
 
 @NgModule({
