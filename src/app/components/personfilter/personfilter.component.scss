@@ -41,6 +41,7 @@
         &--c {
           &:after {
             @include partiLogoUrl(c);
+            border-color: #134838;
           }
         }
 
@@ -50,42 +51,49 @@
             background-size: 26px 26px;
             background-position-x: 6px;
             background-position-y: 6px;
+            border-color: #015ea1;
           }
         }
 
         &--l {
           &:after {
             @include partiLogoUrl(l);
+            border-color: #0168b3;
           }
         }
 
         &--m {
           &:after {
             @include partiLogoUrl(m);
+            border-color: #8ed9f9;
           }
         }
 
         &--mp {
           &:after {
             @include partiLogoUrl(mp);
+            border-color: #0faa4c;
           }
         }
 
         &--s {
           &:after {
             @include partiLogoUrl(s);
+            border-color: #df000f;
           }
         }
 
         &--sd {
           &:after {
             @include partiLogoUrl(sd);
+            border-color: #ffdf00;
           }
         }
 
         &--v {
           &:after {
             @include partiLogoUrl(v);
+            border-color: #e5302b;
           }
         }
       }
