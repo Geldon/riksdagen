@@ -1,4 +1,4 @@
-import {Partibeteckning} from "./partibeteckning.enum";
+import { Partibeteckning } from './partibeteckning.enum';
 
 export interface IPersonMedVotering {
   voteringFraga: IVoteringFragaItem;
@@ -23,20 +23,20 @@ export interface IVoteringSvarItem {
 }
 
 export interface IPartiGrupperatSvarList {
-  "S": IPartiGrupperatSvar;
-  "-": IPartiGrupperatSvar;
-  "SD": IPartiGrupperatSvar;
-  "KD": IPartiGrupperatSvar;
-  "M": IPartiGrupperatSvar;
-  "C": IPartiGrupperatSvar;
-  "V": IPartiGrupperatSvar;
-  "MP": IPartiGrupperatSvar;
-  "L": IPartiGrupperatSvar;
+  S: IPartiGrupperatSvar;
+  '-': IPartiGrupperatSvar;
+  SD: IPartiGrupperatSvar;
+  KD: IPartiGrupperatSvar;
+  M: IPartiGrupperatSvar;
+  C: IPartiGrupperatSvar;
+  V: IPartiGrupperatSvar;
+  MP: IPartiGrupperatSvar;
+  L: IPartiGrupperatSvar;
 }
 
 export interface IPartiGrupperatSvar {
-  antalJa: 0;
-  antalNej: 0;
-  antalAvsta: 0;
-  antalFranvarande: 0;
+  antalJa: number;
+  antalNej: number;
+  antalAvsta: number;
+  antalFranvarande: number;
 }

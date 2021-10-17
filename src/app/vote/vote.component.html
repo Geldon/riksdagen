@@ -1,23 +1,65 @@
 <div class="root-container">
   <div *ngFor="let item of vote?.partigrupperatSvar | keyvalue">
-    <div class="parti-name">{{item.key | json}}</div>
-    <div>{{item.value | json}}</div>
-    <!--<div class="answer-container">
+    <div class="parti-name">{{ item.key | json }}</div>
+    <div class="answer-container">
       <div class="text-container">Ja</div>
-      <div class="yes staple" [ngStyle]="{ 'width': getPercentage(item.value.antalJa, vote) + '%' }">{{vote.antalJa}}</div>
+      <div
+        class="yes staple"
+        [ngStyle]="{
+          width:
+            getPercentage(
+              item.value.antalJa,
+              getPartiVote(item.value, item.key)
+            ) + '%'
+        }"
+      >
+        {{ item.value.antalJa }}
+      </div>
     </div>
     <div class="answer-container">
       <div class="text-container">Nej</div>
-      <div class="no staple" [ngStyle]="{ 'width': getPercentage(vote.antalNej, vote) + '%' }">{{vote.antalNej}}</div>
+      <div
+        class="no staple"
+        [ngStyle]="{
+          width:
+            getPercentage(
+              item.value.antalNej,
+              getPartiVote(item.value, item.key)
+            ) + '%'
+        }"
+      >
+        {{ item.value.antalNej }}
+      </div>
     </div>
     <div class="answer-container">
       <div class="text-container">Blankt</div>
-      <div class="blank staple" [ngStyle]="{ 'width': getPercentage(vote.antalAvsta, vote) + '%' }">{{vote.antalAvsta}}</div>
+      <div
+        class="blank staple"
+        [ngStyle]="{
+          width:
+            getPercentage(
+              item.value.antalAvsta,
+              getPartiVote(item.value, item.key)
+            ) + '%'
+        }"
+      >
+        {{ item.value.antalAvsta }}
+      </div>
     </div>
     <div class="answer-container">
       <div class="text-container">Frånvarande</div>
-      <div class="absent staple" [ngStyle]="{ 'width': getPercentage(vote.antalFranvarande, vote) + '%' }">{{vote.antalFranvarande}}</div>
+      <div
+        class="blank staple"
+        [ngStyle]="{
+          width:
+            getPercentage(
+              item.value.antalFranvarande,
+              getPartiVote(item.value, item.key)
+            ) + '%'
+        }"
+      >
+        {{ item.value.antalFranvarande }}
+      </div>
     </div>
-  </div>-->
   </div>
 </div>

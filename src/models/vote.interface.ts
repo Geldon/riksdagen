@@ -1,9 +1,6 @@
-import {Partibeteckning} from "./partibeteckning.enum";
+import { Partibeteckning } from './partibeteckning.enum';
+import { IPartiGrupperatSvar } from './voteringFraga.interface';
 
-export interface IPartiVote {
+export interface IPartiVote extends IPartiGrupperatSvar {
   parti: Partibeteckning;
-  antalJa: number;
-  antalNej: number;
-  antalAvsta: number;
-  antalFranvarande: number;
 }
