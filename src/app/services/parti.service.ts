@@ -36,6 +36,9 @@ export class PartiService {
       case Partibeteckning.Vansterpartiet:
         name = 'Vänsterpartiet';
         break;
+      case Partibeteckning.UtanPartiBeteckning:
+        name = 'Utan partibeteckning';
+        break;
     }
 
     return name;

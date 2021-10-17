@@ -7,4 +7,5 @@ export enum Partibeteckning {
   Sverigedemokraterna = 'SD',
   Vansterpartiet = 'V',
   Liberalerna = 'L',
+  UtanPartiBeteckning = '-'
 }
