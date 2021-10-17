@@ -29,7 +29,7 @@ export class VoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getPartiName(partiBeteckning: Partibeteckning) {
+  getPartiName(partiBeteckning: any) {
     return this.partiService.getPartiName(partiBeteckning);
   }
 

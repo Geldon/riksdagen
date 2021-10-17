@@ -5490,7 +5490,7 @@ export class RiksdagenService {
 
     //return of(personer);
 
-    const url = `${this.baseUrl}/person`;
+    const url = `${this.baseUrl}/person?partiKod=MP`;
     const params: HttpParams = new HttpParams();
 
     if (partiKod) {

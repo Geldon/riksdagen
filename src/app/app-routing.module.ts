@@ -21,7 +21,8 @@ const routes: Routes = [
   {
     path: 'votering',
     component: VoteComponent
-  }];
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

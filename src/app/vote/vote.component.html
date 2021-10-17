@@ -1,6 +1,41 @@
 <div class="root-container">
-  <div *ngFor="let item of vote?.partigrupperatSvar | keyvalue">
-    <div class="parti-name">{{ item.key | json }}</div>
+  <div class="top-container">
+    <div class="arrow-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+      </svg>
+    </div>
+    {{vote?.voteringSvar?.fornamn}} {{vote?.voteringSvar?.efternamn}} ({{vote?.voteringSvar?.parti}})
+  </div>
+  <div class="vote-container">
+    {{vote?.voteringFraga?.titel}}
+    <div class="vote-info">
+      <div [ngSwitch]="vote?.voteringSvar?.rost">
+        <div *ngSwitchCase="'Ja'" class="vote">
+          <div class="circle yes-circle"></div>
+          <span>Röstade ja&nbsp;</span>
+        </div>
+        <div *ngSwitchCase="'Nej'" class="vote">
+          <div class="circle no-circle">
+          </div>
+          <span>Röstade nej&nbsp;</span>
+        </div>
+        <div *ngSwitchCase="'Avstår'" class="vote">
+          <div class="circle blank-circle"></div>
+          <span>Röstade blankt&nbsp;</span>
+        </div>
+        <div *ngSwitchCase="'Frånvarande'" class="vote">
+          <div class="circle absent-circle"></div>
+          <span>Frånvarande&nbsp;</span>
+        </div>
+      </div>
+      <div class="vote-date">
+        <span> - {{vote?.voteringFraga?.datum?.substr(0, 10)}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="parti-container" *ngFor="let item of vote?.partigrupperatSvar | keyvalue">
+    <div class="parti-name">{{ getPartiName(item.key) }}</div>
     <div class="answer-container">
       <div class="text-container">Ja</div>
       <div
@@ -49,7 +84,7 @@
     <div class="answer-container">
       <div class="text-container">Frånvarande</div>
       <div
-        class="blank staple"
+        class="absent staple"
         [ngStyle]="{
           width:
             getPercentage(

@@ -9,6 +9,7 @@
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  min-width: 20px;
 }
 
 .yes {
@@ -41,4 +42,70 @@
 
 .parti-name {
   font-size: 20px;
+}
+
+.vote-info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+.vote {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.yes-circle {
+  background-color: #3FA820;
+}
+
+.no-circle {
+  background-color: #D52B2B;
+}
+
+.blank-circle {
+  background-color: #CCCCCC;
+}
+
+.absent-circle {
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
+.vote-container {
+  padding: 10px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.parti-container {
+  padding: 20px;
+}
+
+.text-container {
+  width: 100px;
+  text-align: right;
 }
