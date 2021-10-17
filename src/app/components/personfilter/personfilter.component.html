@@ -47,7 +47,11 @@
             type="checkbox"
             [attr.id]="uuid + '_' + i"
             [formControlName]="partibeteckningValueFormControlName"
-            (change)="onFilterCheckboxChanged()"
+            (change)="
+              onFilterCheckboxChanged(
+                partiFormGroup?.get(partibeteckningFormControlName)?.value
+              )
+            "
           />
         </div>
       </li>

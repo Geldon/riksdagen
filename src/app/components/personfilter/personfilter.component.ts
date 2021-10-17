@@ -10,11 +10,18 @@ import { UUID } from 'angular2-uuid';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Partibeteckning } from 'src/models/partibeteckning.enum';
-import {PartiService} from "../../services/parti.service";
+import { PartiService } from '../../services/parti.service';
 
 export interface PersonfilterData {
   text: string;
   partibeteckningar: Array<Partibeteckning>;
+}
+
+interface PartibeteckningFormItemData {
+  partibeteckning: Partibeteckning;
+  name: string;
+  imageCssClass: string;
+  value: boolean;
 }
 
 @Component({
@@ -80,8 +87,39 @@ export class PersonfilterComponent implements OnInit, OnDestroy {
     this.personfilterDebouncer.next(event?.target?.value);
   }
 
-  onFilterCheckboxChanged(): void {
+  onFilterCheckboxChanged(partibeteckning: Partibeteckning): void {
+    if (
+      this.shouldSwitchAllSelectedParties(
+        this.partibeteckningarFormArray?.value,
+        partibeteckning
+      )
+    ) {
+      this.personfilterFormGroup.patchValue({
+        partibeteckningar: this.partibeteckningarFormArray?.value.map(
+          (partibeteckningFormItemData: PartibeteckningFormItemData) => {
+            return {
+              ...partibeteckningFormItemData,
+              value: !partibeteckningFormItemData.value,
+            };
+          }
+        ),
+      });
+    }
+
     this.personfilterDebouncer.next(this.filterTextFormControl?.value);
+  }
+
+  private shouldSwitchAllSelectedParties(
+    partibeteckningFormData: Array<PartibeteckningFormItemData>,
+    partibeteckning: Partibeteckning
+  ): boolean {
+    return !partibeteckningFormData?.some(
+      (partibeteckningFormItemData) =>
+        (partibeteckningFormItemData.partibeteckning === partibeteckning &&
+          partibeteckningFormItemData.value) ||
+        (partibeteckningFormItemData.partibeteckning !== partibeteckning &&
+          !partibeteckningFormItemData.value)
+    );
   }
 
   get partibeteckningarFormArray(): FormArray {
