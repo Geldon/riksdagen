@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {IPerson} from "../../models/person.interface";
 import {RiksdagenService} from "../services/riksdagen.service";
 import {Router} from "@angular/router";
@@ -13,12 +13,18 @@ import {Partibeteckning} from "../../models/partibeteckning.enum";
   styleUrls: ['./personer.component.scss']
 })
 export class PersonerComponent implements OnInit {
-  readonly personer$: Observable<Array<IPerson>>;
+  persons: Array<IPerson> = [];
+  filteredPersons: Array<IPerson> = [];
+  loading: boolean = true;
 
   constructor(private riksdagenService: RiksdagenService,
               private router: Router,
               private partiService: PartiService) {
-    this.personer$ = this.riksdagenService.getPersoner()
+    this.riksdagenService.getPersoner().subscribe(persons => {
+      this.loading = false;
+      this.persons = persons;
+      this.filteredPersons = persons;
+    });
   }
 
   ngOnInit(): void {
@@ -28,8 +34,23 @@ export class PersonerComponent implements OnInit {
     this.router.navigate(['ledamot', personId]);
   }
 
-  filterList($event: PersonfilterData | null) {
+  filterList(event: PersonfilterData | null) {
+    if (!event) {
+      this.filteredPersons = this.persons;
+      return;
+    }
 
+    const trimmed = event.text?.trim().toLowerCase();
+
+    this.filteredPersons = this.persons.filter(person => {
+      return this.checkIfContains(person.tilltalsnamn, trimmed) ||
+        this.checkIfContains(person.efternamn, trimmed) ||
+        this.checkIfContains(person.tilltalsnamn + ' ' + person.efternamn, trimmed)
+    })
+  }
+
+  checkIfContains(name: string, filterString: string) {
+    return name.toLowerCase().includes(filterString);
   }
 
   getPartiName(partiBeteckning: Partibeteckning) {

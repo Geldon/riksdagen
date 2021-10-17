@@ -1,17 +1,16 @@
 <div class="root-container">
   <app-personfilter (filterVisiblePersonsRequested)="filterList($event)"></app-personfilter>
 
-  <ng-container *ngIf="personer$ | async as personer">
-    <div>
-      <div (click)="goToPerson(person.personId)" class="person" *ngFor="let person of personer">
-        <div class="person-image">
-          <img [src]=person.bildUrl alt="image">
-        </div>
-        <div class="details">
-          <span>{{ person.tilltalsnamn }} {{ person.efternamn }}</span>
-          <span>{{getPartiName(person.parti)}}</span>
-        </div>
+  <div *ngIf="loading" class="spinner-border" role="status">
+  </div>
+
+    <div (click)="goToPerson(person.personId)" class="person" *ngFor="let person of filteredPersons">
+      <div class="person-image">
+        <img [src]=person.bildUrl alt="image">
+      </div>
+      <div class="details">
+        <span>{{ person.tilltalsnamn }} {{ person.efternamn }}</span>
+        <span>{{getPartiName(person.parti)}}</span>
       </div>
     </div>
-  </ng-container>
 </div>
